@@ -20,6 +20,13 @@ User.init(
                 isEmail: true
             }
         },
+        phone_number: {
+            type: DataTypes.STRING(10),
+            allowNull: false,
+            validate: {
+                isAlphanumeric: true
+            }
+        },
         username: {
             type: DataTypes.STRING,
             allowNull: false,
