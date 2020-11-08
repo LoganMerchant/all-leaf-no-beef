@@ -14,16 +14,20 @@ const client = require('twilio')(accountSid, authToken);
 //     .then(message => console.log(message.sid));
 
 // TEST OUTBOUND ON TIMER (EVERY MINUTE)
-// const CronJob = require('cron').CronJob;
+const CronJob = require('cron').CronJob;
 
-// const job = new CronJob('*/1 * * * *', function() {
-//     client.messages
-//         .create({
-//             body: `${new Date().getHours()} / ${new Date().getMinutes()} / ${new Date().getSeconds()}`,
-//             from: '+12058966426',
-//             to: '+18015542378'
-//         })
-//         .then(message => console.log(message.sid));
-// });
+function smsReminderInit () {
+    const job = new CronJob('*/1 * * * *', function() {
+        client.messages
+            .create({
+                body: `${new Date().getHours()} / ${new Date().getMinutes()} / ${new Date().getSeconds()}`,
+                from: '+12058966426',
+                to: '+18015542378'
+            })
+            .then(message => console.log(message.sid));
+    });
 
-// job.start();
+    job.start();
+};
+
+module.exports = smsReminderInit();
