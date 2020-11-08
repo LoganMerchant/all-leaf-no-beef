@@ -1,6 +1,8 @@
 const User = require('./User');
 const Post = require('./Post');
 const Comment = require('./Comment');
+const Produce = require('./Produce');
+const TrackedProduce = require('./TrackedProduce');
 
 // USER & POST ASSOCIATIONS
 User.hasMany(Post, {
@@ -28,4 +30,17 @@ Comment.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
-module.exports = { User, Post, Comment };
+// PRODUCE, TRACKEDPRODUCE, AND USER ASSOCIATIONS
+User.belongsToMany(Produce, {
+    through: 'tracked_produce',
+    as: 'produce',
+    foreignKey: 'user_id'
+});
+
+Produce.belongsToMany(User, {
+    through: 'tracked_produce',
+    as: 'produce',
+    foreignKey: 'produce_id'
+});
+
+module.exports = { User, Post, Comment, Produce, TrackedProduce };
