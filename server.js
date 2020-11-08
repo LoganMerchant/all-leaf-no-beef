@@ -45,6 +45,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session(sess));
 
 // Turn on access to routes...when they are available
+const routes = require('./controllers');
+app.use(routes);
 
 // Force Sequelize to drop the models if true 
 sequelize.sync({ force: false })
