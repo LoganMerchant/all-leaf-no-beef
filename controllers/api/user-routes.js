@@ -61,6 +61,7 @@ router.post('/', (req, res) => {
     });
 });
 
+// POST ROUTE FOR LOGIN
 router.post('/login', (req, res) => {
     console.log('======================');
     User.findOne({
@@ -72,7 +73,6 @@ router.post('/login', (req, res) => {
             res.status(400).json({ message: 'No user with that email address!' });
             return;
         }
-        // res.json({ user: dbUserData });
 
         // Verify user
         const validPassword = dbUserData.checkPassword(req.body.password);
