@@ -3,6 +3,7 @@ const Post = require('./Post');
 const Comment = require('./Comment');
 const Vote = require('./Vote');
 const Produce = require('./Produce');
+const produceArr = require('../db/data/produce.json');
 const TrackedProduce = require('./TrackedProduce');
 
 // USER & POST ASSOCIATIONS
@@ -72,5 +73,8 @@ Produce.belongsToMany(User, {
     as: 'produce',
     foreignKey: 'produce_id'
 });
+
+// Seed the Produce with data.
+Produce.bulkCreate(produceArr);
 
 module.exports = { User, Post, Comment, Vote, Produce, TrackedProduce };
