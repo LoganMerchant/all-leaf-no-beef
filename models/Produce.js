@@ -20,8 +20,20 @@ Produce.init(
             allowNull: true
         },
         water_frequency: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: true
+        },
+        planting_depth:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        pot_size: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        amount_of_light: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     },
     {
