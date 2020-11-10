@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Post, Comment, Vote } = require('../../models');
+const { User, Post, Comment, Vote, Produce, TrackedProduce } = require('../../models');
 
 // GET /api/users
 router.get('/', (req, res) => {
@@ -10,6 +10,50 @@ router.get('/', (req, res) => {
     .catch(err => {
         console.log(err);
         res.status(500);
+    });
+});
+
+// GET user's produce to be watered daily
+router.get('/daily-produce', (req, res) => {
+    User.findAll({
+        attributes: { exclude: ['password'] },
+        include: {
+            model: Produce,
+            as: 'user_produce',
+            through: {
+                attributes: []
+            },
+            where: {
+                water_frequency: 'daily'
+            }
+        }
+    })
+    .then(dbUserData => res.json(dbUserData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
+
+// GET user's produce to be watered bi-weekly
+router.get('/bi-weekly-produce', (req, res) => {
+    User.findAll({
+        attributes: { exclude: ['password'] },
+        include: {
+            model: Produce,
+            as: 'user_produce',
+            through: {
+                attributes: []
+            },
+            where: {
+                water_frequency: 'bi-weekly'
+            }
+        }
+    })
+    .then(dbUserData => res.json(dbUserData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
     });
 });
 
