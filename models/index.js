@@ -64,13 +64,13 @@ Post.hasMany(Vote, {
 // PRODUCE, TRACKEDPRODUCE, AND USER ASSOCIATIONS
 User.belongsToMany(Produce, {
     through: 'tracked_produce',
-    as: 'produce',
+    as: 'user_produce',
     foreignKey: 'user_id'
 });
 
 Produce.belongsToMany(User, {
     through: 'tracked_produce',
-    as: 'produce',
+    as: 'user_produce',
     foreignKey: 'produce_id'
 });
 
