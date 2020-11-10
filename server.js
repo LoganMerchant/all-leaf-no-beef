@@ -48,6 +48,10 @@ app.use(session(sess));
 const routes = require('./controllers');
 app.use(routes);
 
+const smsRemindersInit = require('./utils/send-sms');
+
+smsRemindersInit();
+
 // Force Sequelize to drop the models if true 
 sequelize.sync({ force: false })
     // Turn on the server
