@@ -1,0 +1,8 @@
+:root {
+    --primary-bg-color: rgba(21, 184, 0);
+    --secondary-bg-color: rgba(196, 255, 189);
+}
+
+.nav-bg-color {
+    background: linear-gradient(to right, var(--primary-bg-color), var(--secondary-bg-color));
+}
