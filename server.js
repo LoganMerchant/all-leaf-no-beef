@@ -53,7 +53,7 @@ app.use(session(sess));
 const routes = require('./controllers');
 app.use(routes);
 
-smsRemindersInit();
+// smsRemindersInit();
 
 // Force Sequelize to drop the models if true 
 sequelize.sync({ force: false })
