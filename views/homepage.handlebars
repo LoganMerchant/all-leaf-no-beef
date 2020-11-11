@@ -1,27 +1,35 @@
-<form class="login-form">
-    <label for="email">Email Address</label>
-    <input type="text" name="email" />
-    <br/>
+<div class="container">
+    <div class="row">
+        <div class="col-3 text-center">
+            <form class="login-form border border-secondary p-5">
+                <label for="email">Email Address</label>
+                <input type="text" name="email" />
+                <br/>
 
-    <label for="password">Password</label>
-    <input type="password" name="password" />
-    <button type="submit" class="">login</button>
-</form>
+                <label for="password">Password</label>
+                <input type="password" name="password" />
+                <br/>
+                
+                <button type="submit" class="">login</button>
+            </form>
+        </div>
 
-<ol>
-    {{#each posts}}
-    <li>
-        <article>
-            <div>
-                <a href="/post">{{title}}</a> <br/>
-                <span>{{ content }}</span>
-                <br>
-                {{vote_count}} upvote(s) on {{created_at}}
-                <a href="/post/{{id}}">{{comments.length}} comment(s)</a>
-            </div>
-        </article>
-    </li>
-    {{/each}}
-</ol>
+        <ul class="col-9">
+            {{#each posts}}
+            <li>
+                <article>
+                    <div>
+                        <a href="/post">{{title}}</a> <br/>
+                        <span>{{ content }}</span>
+                        <br>
+                        {{vote_count}} upvote(s) on {{created_at}}
+                        <a href="/post/{{id}}">{{comments.length}} comment(s)</a>
+                    </div>
+                </article>
+            </li>
+            {{/each}}
+        </ol>
+    </div>
+</div>
 
 <script src="/javascript/login.js"></script>
