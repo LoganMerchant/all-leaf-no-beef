@@ -1,9 +1,12 @@
 // Direct package imports from npm
 const express = require('express');
 const session = require('express-session');
+const exphbs = require('express-handlebars');
+const hbs = exphbs.create({});
 
 // Imports from elsewhere in this directory
 const sequelize = require('./config/connection');
+const smsRemindersInit = require('./utils/send-sms');
 
 // SESSION SETUP
     // This sets Sequelize up to have sessions
@@ -35,6 +38,8 @@ const PORT = process.env.PORT || 3001;
 
 // Templating engine setup...to be decided by front end, i.e. ...
 // Handlebars or no
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 // MIDDLEWARE
     // Our server will structure data as JSON
@@ -47,8 +52,6 @@ app.use(session(sess));
 // Turn on access to routes...when they are available
 const routes = require('./controllers');
 app.use(routes);
-
-const smsRemindersInit = require('./utils/send-sms');
 
 smsRemindersInit();
 
