@@ -2,12 +2,12 @@
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create({});
 const path = require('path');
 
 // Imports from elsewhere in this directory
 const sequelize = require('./config/connection');
 const smsRemindersInit = require('./utils/send-sms');
+const helpers = require('./utils/helpers');
 
 // SESSION SETUP
     // This sets Sequelize up to have sessions
@@ -39,6 +39,7 @@ const PORT = process.env.PORT || 3001;
 
 // Templating engine setup...to be decided by front end, i.e. ...
 // Handlebars or no
+const hbs = exphbs.create({helpers});
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
