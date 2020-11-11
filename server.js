@@ -3,6 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const hbs = exphbs.create({});
+const path = require('path');
 
 // Imports from elsewhere in this directory
 const sequelize = require('./config/connection');
@@ -48,6 +49,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
     // Our server's session will use the settings defined in `sess`
 app.use(session(sess));
+
+app.use(express.static(path.join(__dirname, 'public')))
 
 // Turn on access to routes...when they are available
 const routes = require('./controllers');
