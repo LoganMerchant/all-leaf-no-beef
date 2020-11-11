@@ -4,23 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/css/stylesheet.css" />
     <title>All Leaf, No Beef</title>
 </head>
-<body>
+<body class="nav-bg-color">
     <header>
-        <h1>All Leaf, No Beef</h1>
-        <nav>
-            {{#if loggedIn}}
-            <a href="/dashboard">Dashboard</a>
-            {{else}}
-            <a href="/signup">Signup</a>
-            {{/if}}
+        <nav class="navbar nav-bg-color border-bottom border-secondary rounded mb-4">
+            <a class="navbar-brand text-light" href="/">All Leaf, No Beef</a>
+            <ul class="navbar nav">
+                {{#if loggedIn}}
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="/logout">Logout</a>
+                </li>
+                {{else}}
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="/signup">Signup</a>
+                </li>
+                {{/if}}
+            </ul>
         </nav>
     </header>
 
     {{{ body }}}
     
-    <footer>
+    <footer class="text-center">
         &copy; 2020 All Leaf, No Beef
     </footer>
 </body>
