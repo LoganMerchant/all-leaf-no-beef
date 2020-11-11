@@ -1,6 +1,7 @@
 <form>
     <label for="email">Email Address</label>
     <input type="text" name="email" />
+    <br/>
 
     <label for="password">Password</label>
     <input type="text" name="password" />
@@ -14,7 +15,8 @@
                 <a href="/post">{{title}}</a> <br/>
                 <span>{{ content }}</span>
                 <br>
-                <p>This post has {{vote_count}} upvotes</p>
+                {{vote_count}} upvote(s) on {{created_at}}
+                <a href="/post/{{id}}">{{comments.length}} comment(s)</a>
             </div>
         </article>
     </li>
