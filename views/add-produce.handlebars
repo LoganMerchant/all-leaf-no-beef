@@ -1,0 +1,22 @@
+<div class="container">
+        <div class="row">
+            {{#each produce}}
+            <div class="col-sm">
+                <div class="card" style="width: 20rem;">
+                    <img src="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{name}}</h5>
+                        <p class="card-text">
+                            <li>Water Amount Per Day: {{water_amount}}.</li>
+                            <li>Water Frequency per week: {{water_frequency}}.</li>
+                            <li>Planting Depth: {{planting_depth}}.</li>
+                            <li>Pot Size Needed: {{pot_size}} inches.</li>
+                            <li>Hours of Light Needed Per Day: {{amount_of_light}}</li>
+                        </p>
+                        <a href="#" class="btn btn-primary">Grow it!</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
