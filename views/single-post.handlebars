@@ -8,6 +8,7 @@
         </div>
     </article>
 
+    {{#if loggedIn}}
     <form id="comment-form" class="row my-5">
         <div class="col-12">
             <textarea id="comment-textarea" rows="5" name="comment-body"></textarea>
@@ -17,6 +18,9 @@
             <button id="upvote-btn" class="btn btn-info" type="button" >upvote</button>
         </div>
     </form>
+    {{else}}
+    <p class="w-100 border-bottom border-secondary my-4"></p>
+    {{/if}}
 
     {{#if post.comments}}
     <div class="row">
@@ -34,5 +38,7 @@
     {{/if}}    
 </div>
 
+{{#if loggedIn}}
 <script src="/javascript/upvote.js"></script>
 <script src="/javascript/comment.js"></script>
+{{/if}}

@@ -1,5 +1,6 @@
 <div class="container">
     <div class="row">
+        {{#unless loggedIn}}
         <div class="col-4 text-center">
             <form class="login-form border border-secondary text-right position-fixed p-4">
                 <label for="email">Email Address</label>
@@ -26,7 +27,23 @@
             </li>
             {{/each}}
         </ol>
+        {{else}}
+        <ul class="col-12 list-group">
+            {{#each posts}}
+            <li class="list-group-item list-group-item-info mb-2">
+                <div>
+                    <a class="text-success display-4" href="/post/{{id}}">{{title}}</a> <br/>
+                    <p class="lead text-dark">{{ content }}</p>
+                    <p class="text-muted lead">{{vote_count}} upvote(s), created on {{format_date created_at}}</p>
+                    <a class="text-muted lead" href="/post/{{id}}">{{comments.length}} comment(s)</a>
+                </div>
+            </li>
+            {{/each}}
+        </ol>
+        {{/unless}}
     </div>
 </div>
 
+{{#unless loggedIn}}
 <script src="/javascript/login.js"></script>
+{{/unless}}

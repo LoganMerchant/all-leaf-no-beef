@@ -16,7 +16,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-dark" href="/dashboard">Dashboard</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="logout">
                     <a class="nav-link text-dark" href="/logout">Logout</a>
                 </li>
                 {{else}}
@@ -34,4 +34,7 @@
         <p class="my-3">&copy; 2020 All Leaf, No Beef</p>
     </footer>
 </body>
+{{#if loggedIn}}
+<script src="/javascript/logout.js"></script>
+{{/if}}
 </html>
