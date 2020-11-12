@@ -1,36 +1,35 @@
-<article>
-    <div>
-        <a href="/post">{{post.title}}</a> <br/>
-        <p>{{ post.content }}</p>
-    </div>
-    <div>
-        {{post.vote_count}} upvote(s) by {{post.user.username}} on
-        {{post.created_at}}
-        |
-        <a href="/post/{{post.id}}">{{post.comments.length}} comment(s)</a>
-    </div>
-</article>
-
-<form>
-    <div>
-        <textarea name="comment-body"></textarea>
-    </div>
-
-    <div>
-        <button type="submit">add comment</button>
-        <button type="button" >upvote</button>
-    </div>
-</form>
-
-<div>
-    {{#each post.comments}}
-    <section>
-        <div>
-            {{user.username}} on {{created_at}}
+<div class="container">
+    <article class="row">
+        <div class="col-12">
+            <p class="display-4">{{post.title}}</p> 
+            <p class="lead">{{ post.content }}</p>
+            {{post.vote_count}} upvote(s), created by {{post.user.username}} on
+            {{format_date post.created_at}}
         </div>
-        <div>
-            {{content}}
+    </article>
+
+    <form class="row my-5">
+        <div class="col-12">
+            <textarea id="comment-textarea" rows="5" name="comment-body"></textarea>
         </div>
-    </section>
-    {{/each}}
+        <div class="col-12 d-flex justify-content-around">
+            <button class="btn btn-info" type="submit">add comment</button>
+            <button class="btn btn-info" type="button" >upvote</button>
+        </div>
+    </form>
+
+    {{#if post.comments}}
+    <div class="row">
+        {{#each post.comments}}
+        <section class="col-12">
+            <div class="h3">
+                {{user.username}} on {{format_date created_at}}
+            </div>
+            <p class="lead">
+                {{content}}
+            </p>
+        </section>
+        {{/each}}
+    </div>        
+    {{/if}}    
 </div>
