@@ -1,0 +1,13 @@
+<section class="container">
+    <div class="row" id="calendar-week">
+        <div class="col-4">
+            <h5>Week of: {{week.[0].month}}/{{week.[0].date}}/{{week.[0].year}} - {{week.[6].month}}/{{week.[6].date}}/{{week.[6].year}}</h5>
+        </div>
+        {{#each week.day}}
+        <div class="col-1">
+            <h4>{{weekdayOfWeek}}</h4>
+
+        </div>
+        {{/each}}
+    </div>
+</section>
