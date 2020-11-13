@@ -1,10 +1,27 @@
-async function addProducetoUserHandler(event) {
-    event.preventDefault();
+let produceName = document.querySelectorAll('button[name]');
 
-    const produceName = document.getElementById("produce-name").value.trim();
+for (i of produceName) {
+    i.addEventListener('click', function() {
+        console.log(this.name);
 
-    console.log(produceName);
-    
+        const produce_id = this.name;
+        // const user_id = ;
+
+        const response = fetch('/api/tracked-produce', {
+            method: 'POST',
+            body: JSON.stringify({
+                produce_id,
+                user_id
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        if (response.ok) {
+            document.location.replace('/dashboard')
+        } else {
+            alert(response.statusText);
+        }
+    });
 }
-
-document.querySelector('#add-produce').addEventListener('click', addProducetoUserHandler);

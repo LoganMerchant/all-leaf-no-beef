@@ -66,6 +66,13 @@ router.get('/:id', (req, res) => {
         },
         include: [
             {
+                model: Produce,
+                as: 'user_produce',
+                through: {
+                    attributes: []
+                }
+            },
+            {
                 model: Post,
                 attributes: ['id', 'title', 'content', 'created_at']
             },
