@@ -57,7 +57,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 const routes = require('./controllers');
 app.use(routes);
 
-// smsRemindersInit();
+smsRemindersInit();
 
 // Force Sequelize to drop the models if true 
 sequelize.sync({ force: false })
