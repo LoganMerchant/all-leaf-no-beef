@@ -1,17 +1,58 @@
 <section class="container">
-    <div class="row" id="calendar-week">
-        <div class="col-4">
-            <h5>Week of: {{week.[0].month}}/{{week.[0].date}}/{{week.[0].year}} - {{week.[6].month}}/{{week.[6].date}}/{{week.[6].year}}</h5>
+    <div class="row">
+        <div class="col-12 text-center">
+            <p class="h3">Week of <span class="lead">{{week.[0].month}} / {{week.[0].date}} / {{week.[0].year}} – {{week.[6].month}} / {{week.[6].date}} / {{week.[6].year}}</span></p>
         </div>
-        {{#each week.day}}
-        <div class="col-1">
-            <h4>{{weekdayOfWeek}}</h4>
+        {{#each week}}
+        {{#if @first}}
+        <div class="col-12 border border-secondary d-flex align-items-center flex-column pt-2">
+            <h3 class="text-center">{{dayOfWeek}} List of To-Dos</h3>
+            <ul class="list-group w-50">
+                {{#each ../produce}}
 
+                {{#if (isDaily water_frequency)}}
+                <li class="list-group-item list-group-item-info mb-3">
+                    <h6>{{name}}</h4>
+                    <p>Require {{water_amount}} of water.</p>
+                    <p>Require {{amount_of_light}} hours of sunlight.</p>
+                </li>
+                {{/if}}
+
+                {{#if (isBiWeekly water_frequency ../dayOfWeek ../date)}}
+                <li class="list-group-item list-group-item-info mb-3">
+                    <h4>{{name}}</h4>
+                    <p>Require {{water_amount}} of water.</p>
+                    <p>Require {{amount_of_light}} hours of sunlight.</p>
+                </li>
+                {{/if}}
+
+                {{/each}}
+            </ul>
         </div>
+        {{else}}
+        <div class="col-2 border border-secondary d-flex align-items-center flex-column">
+            <h4>{{dayOfWeek}}</h4>
+            {{#each ../produce}}
+
+            {{#if (isDaily water_frequency)}}
+            <li class="list-group-item list-group-item-info mb-2">
+                <h6>{{name}}</h6>
+            </li>
+            {{/if}}
+
+            {{#if (isBiWeekly water_frequency ../dayOfWeek ../date)}}
+            <li class="list-group-item list-group-item-info mb-3">
+                <h6>{{name}}</h6>
+            </li>
+            {{/if}}
+
+            {{/each}}
+        </div>
+        {{/if}}
         {{/each}}
     </div>
-    <div>
-        <button id="add-produce" class="btn btn-success" href="/add-produce">Lets Grow Something!</button>
+    <div class="text-center mt-3">
+        <button id="add-produce" class="btn btn-info" href="/add-produce">Click here to track more produce!</button>
     </div>
 </section>
 

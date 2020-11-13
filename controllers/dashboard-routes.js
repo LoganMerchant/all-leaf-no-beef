@@ -4,14 +4,26 @@ const sequelize = require('../config/connection');
 const { User, Post, Comment, Produce, TrackedProduce } = require('../models');
 
 router.get('/', (req, res) => {
-    Post.findAll({
+    User.findOne({
+        attributes: {exclude: ['password']},
         where: {
-            user_id: req.session.user_id
+            id: req.session.user_id
         },
-        attributes: ['id', 'title', 'content', 'created_at']
+        include: [
+            {
+                model: Produce,
+                as: 'user_produce',
+                through: {
+                    attributes: []
+                }
+            },
+            {
+                model: Post,
+            }
+        ],
     })
     .then(dbPostData => {
-        const posts = dbPostData.map(post => post.get({ plain: true }));
+        const userData = dbPostData.get({ plain: true });
 
         let week = [];
 
@@ -26,9 +38,12 @@ router.get('/', (req, res) => {
             week.push(day);
         };
 
-        console.log({ posts, week, loggedIn: true });
-
-        res.render('dashboard', { posts, week, loggedIn: true });
+        res.render('dashboard', { 
+            produce: userData.user_produce,
+            posts: userData.posts,
+            week,
+            loggedIn: true 
+        });
     })
     .catch(err => {
         console.log(err);
