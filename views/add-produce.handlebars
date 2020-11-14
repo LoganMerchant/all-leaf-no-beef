@@ -3,9 +3,9 @@
             {{#each produce}}
             <div class="col-sm">
                 <div class="card" style="width: 20rem;">
-                    <img src="" class="card-img-top">
+                    <img src="{{link}}" class="card-img">
                     <div class="card-body">
-                        <h5 class="card-title">{{name}}</h5>
+                        <h5 class="card-title">{{name}}</h5><image href={{link}}></img>
                         <p class="card-text">
                             <li>Water Amount Per Day: {{water_amount}}.</li>
                             <li>Water Frequency Per Week: {{water_frequency}}.</li>
@@ -13,7 +13,7 @@
                             <li>Pot Size Needed: {{pot_size}} inches.</li>
                             <li>Hours of Light Needed Per Day: {{amount_of_light}}</li>
                         </p>
-                        <button name="{{id}}" class="add-produce" class="btn btn-primary">Grow it!</button>
+                        <button name="{{id}}" class="add-produce">Grow it!</button>
                     </div>
                 </div>
             </div>

@@ -1,12 +1,38 @@
 :root {
-    --primary-bg-color: rgba(21, 184, 0);
-    --secondary-bg-color: rgba(196, 255, 189);
+    --main-color: #fafafc;
+    --color2: #3d4a39;
+    --color3: #efeeed;
+    --color4: #8f9f88;
+    --color5: #e2b6aa;
+    --color6: #f9e2d6;
+
 }
 
-.nav-bg-color {
-    background: linear-gradient(to right, var(--primary-bg-color), var(--secondary-bg-color));
+
+.default {
+    background-color: var(--main-color);
+    
+}
+.navbar {
+    background-color: var(--color4);
+    color: var(--color2);
 }
 
-#comment-textarea {
-    width: 100%;
+footer {
+    background-color: var(--color4);
+}
+
+/* cards */
+.card-body {
+   border: 1px solid var(--color2);
+}
+
+.add-produce {
+    background-color: var(--color4);
+    border: 1px solid var(--color4);
+    border-radius: 5px;
+}
+
+.card-img {
+    
 }
