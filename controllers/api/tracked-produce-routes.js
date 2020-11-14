@@ -4,7 +4,7 @@ const { TrackedProduce } = require('../../models');
 // POST a user's tracked produce item
 router.post('/', (req, res) => {
     TrackedProduce.create({
-        user_id: req.body.user_id,
+        user_id: req.session.user_id,
         produce_id: req.body.produce_id
     })
     .then(dbTrackedProduceData => {
