@@ -3,8 +3,7 @@
             {{#each produce}}
             
                 <div class="card-row" style="width: 20rem;">
-                    <div class="card-body" >
-                        <h5 class="card-title">{{name}}</h5><img href= "/views/images/tomato.jpg"></img>
+                        <h5 class="card-title">{{name}}</h5>
                         <p class="card-text">
                             <li>Watering Amount: {{water_amount}}.</li>
                             <li>Watering Frequency: {{water_frequency}}.</li>
@@ -13,7 +12,6 @@
                             <li>Hours of Light Needed Per Day: {{amount_of_light}}</li>
                         </p>
                         <button name="{{id}}" class="add-produce">Grow it!</button>
-                    </div>
                 </div>
             
             {{/each}}

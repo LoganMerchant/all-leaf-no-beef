@@ -1,7 +1,7 @@
-<div class="container">
-    <div class="row">
+
+    <div class="home-container">
         {{#unless loggedIn}}
-        <div class="col-4 text-center">
+        <div class="home-row">
             <form class="login-form border border-secondary text-right position-fixed p-4">
                 <label for="email">Email Address</label>
                 <input id="email-login" type="text" name="email" />
@@ -42,7 +42,7 @@
         </ol>
         {{/unless}}
     </div>
-</div>
+
 
 {{#unless loggedIn}}
 <script src="/javascript/login.js"></script>

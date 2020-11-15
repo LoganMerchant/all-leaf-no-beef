@@ -1,10 +1,10 @@
 :root {
     --main-color: #fafafc;
-    --color2: #3d4a39;
-    --color3: #efeeed;
-    --color4: #8f9f88;
+    --color2: rgb(12, 15, 7);
+    --color3: rgb(163, 200, 159);
+    --color4: rgb(93, 121, 34);
     --color5: #e2b6aa;
-    --color6: #f9e2d6;
+    --color6: #2c4629;
 
 }
 
@@ -14,14 +14,34 @@
     
 }
 .navbar {
-    background-color: var(--color4);
-    color: var(--color2);
+    background-color: var(--color3);
+    color: var(--color6);
+}
+
+.nav-link {
+    color: var(--color6);
 }
 
 footer {
-    background-color: var(--color4);
+    background-color: var(--color3);
 }
 
+/* homepage */
+.home-container {
+    display: flex;
+    flex-flow: row wrap;
+
+}
+
+.home-row {
+    flex-direction: row;
+    border: 1px solid var(--color2);
+    margin: 2% 2% 2% 2%;
+    padding: 2% 2% 2% 2%;
+   border-radius: 15px;
+   background-color: var(--color3);
+   
+}
 /* cards */
 .card-container {
     display: flex;
@@ -32,18 +52,20 @@ footer {
 
 .card-row{
     flex-direction: row;
-    
+    border: 1px solid var(--color2);
+    padding: 2% 2% 2% 2%;
+   border-radius: 15px;
+   background-image: url("/views/images/tomato.png");
+   background-color: var(--color3);
+   
 }
 
-.card-body {
-   border: 1px solid var(--color2);
-   border-radius: 15px;ß
-}
 
 .add-produce {
     background-color: var(--color4);
-    border: 1px solid var(--color4);
+    border: 1px solid var(--color2);
     border-radius: 5px;
+    color: var(--color2);
 }
 
 .card-img {
