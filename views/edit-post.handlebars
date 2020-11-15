@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        <form class="col-6 offset-3 d-flex justify-content-center flex-column border border-secondary">
+            <label for="title" class="h5 mr-2 pt-2">Title: </label>
+            <input name="title" type="text" value="{{post.title}}" />
+
+            <label for="content" class="h5 mr-2 pt-2">Content: </label>
+            <textarea name="content" rows="8">{{post.content}}</textarea>
+
+            <button type="button" id="edit-button" class="btn btn-warning my-2">Update this post!</button>
+            <button type="button" id="delete-button" class="btn btn-danger my-2">Delete this post!</button>
+        </form>
+    </div>
+</div>
+
+<script src="/javascript/edit-post.js"></script>

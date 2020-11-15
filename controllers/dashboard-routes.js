@@ -19,6 +19,16 @@ router.get('/', (req, res) => {
             },
             {
                 model: Post,
+                attributes: [
+                    'id',
+                    'title',
+                    'content',
+                    'created_at',
+                    [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE id = vote.post_id)'), 'vote_count']
+                ], 
+                include: {
+                    model: Comment
+                }
             }
         ],
     })
@@ -49,6 +59,28 @@ router.get('/', (req, res) => {
         console.log(err);
         res.status(500).json(err);
     });
+});
+
+router.get('/edit-post/:id', (req, res) => {
+    Post.findOne({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(dbPostData => {
+        const userData = dbPostData.get({ plain: true });
+
+        console.log(userData);
+
+        res.render('edit-post', {
+            post: userData,
+            loggedIn: true
+        })
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    })
 });
 
 module.exports = router;

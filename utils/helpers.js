@@ -14,8 +14,6 @@ module.exports = {
     isBiWeekly: (string, dayOfTheWeek, dayOfTheMonth) => {
         const biWeeklyDays = ['1', '2', '3', '4', '5', '6', '7', '15', '16', '17', '18', '19', '20', '21', '29', '30', '31'];
 
-        console.log(string, dayOfTheWeek, dayOfTheMonth);
-
         function confirm() {
             if (biWeeklyDays.includes(dayOfTheMonth)) {
                 return true;
