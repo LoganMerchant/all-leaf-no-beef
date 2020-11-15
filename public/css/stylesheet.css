@@ -23,8 +23,21 @@ footer {
 }
 
 /* cards */
+.card-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+.card-row{
+    flex-direction: row;
+    
+}
+
 .card-body {
    border: 1px solid var(--color2);
+   border-radius: 15px;ß
 }
 
 .add-produce {
@@ -34,5 +47,5 @@ footer {
 }
 
 .card-img {
-    
+
 }
