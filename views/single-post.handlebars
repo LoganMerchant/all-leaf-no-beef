@@ -1,0 +1,44 @@
+<div class="container">
+    <article class="row">
+        <div class="col-12">
+            <p class="display-4">{{post.title}}</p> 
+            <p class="lead">{{ post.content }}</p>
+            {{post.vote_count}} upvote(s), created by {{post.user.username}} on
+            {{format_date post.created_at}}
+        </div>
+    </article>
+
+    {{#if loggedIn}}
+    <form id="comment-form" class="row my-5">
+        <div class="col-12">
+            <textarea id="comment-textarea" rows="5" name="comment-body"></textarea>
+        </div>
+        <div class="col-12 d-flex justify-content-around">
+            <button  class="btn btn-info" type="submit">add comment</button>
+            <button id="upvote-btn" class="btn btn-info" type="button" >upvote</button>
+        </div>
+    </form>
+    {{else}}
+    <p class="w-100 border-bottom border-secondary my-4"></p>
+    {{/if}}
+
+    {{#if post.comments}}
+    <div class="row">
+        {{#each post.comments}}
+        <section class="col-12">
+            <div class="h3">
+                {{user.username}} on {{format_date created_at}}
+            </div>
+            <p class="lead">
+                {{content}}
+            </p>
+        </section>
+        {{/each}}
+    </div>        
+    {{/if}}    
+</div>
+
+{{#if loggedIn}}
+<script src="/javascript/upvote.js"></script>
+<script src="/javascript/comment.js"></script>
+{{/if}}
