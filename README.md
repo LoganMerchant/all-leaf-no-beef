@@ -14,6 +14,7 @@ A gardening site for people entering into the world of home-grown produce.
 
 ## Table of Contents
 
+- [Languages, Libraries, and APIs Used](#languages-libraries-and-apis-used)
 - [Description](#description)
 - [Usage](#usage)
 - [Contributors](#contributors)
