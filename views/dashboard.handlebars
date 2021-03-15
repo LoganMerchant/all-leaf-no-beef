@@ -5,9 +5,9 @@
         </div>
         {{#each week}}
         {{#if @first}}
-        <div class="col-12 border border-secondary d-flex align-items-center flex-column pt-2">
+        <div class="col-12 border border-secondary d-flex align-items-center flex-column py-2">
             <h3 class="text-center">{{dayOfWeek}} List of To-Dos</h3>
-            <ul class="list-group w-50">
+            <ul class="list-group w-50 pb-2">
                 {{#each ../produce}}
 
                 {{#if (isDaily water_frequency)}}
@@ -51,34 +51,42 @@
         {{/if}}
         {{/each}}
     </div>
-    <div class="text-center mt-3">
-        <button id="add-produce" class="btn btn-info" href="/add-produce">Click here to track more produce!</button>
-    </div>
-</section>
 
-<br/>
-
-{{#if posts}}
-<section class="container">
     <div class="row">
-        <div class="col-12 text-center">
-            <p class="h3">Your Posts</p>
-        </div>
-        <ul id="post-list" class="col-12 list-group">
+        {{#if posts}}
+        <div class="col-6">
+        <h3 class="text-center">Your Posts</h3>
+        <ul id="post-list" class="list-group">
             {{#each posts}}
             <li class="list-group-item list-group-item-info mb-2">
-                <div>
                     <a class="text-success display-4" href="/post/{{id}}">{{title}}</a> <br/>
                     <p class="lead text-dark">{{ content }}</p>
                     <p class="text-muted lead">{{vote_count}} upvote(s), created on {{format_date created_at}}</p>
                     <a class="text-muted lead" href="/post/{{id}}">{{comments.length}} comment(s)</a>
-                </div>
                 <a role="button" class="my-2 btn btn-warning" href="/dashboard/edit-post/{{id}}">Edit this post!</a>
             </li>
             {{/each}}
         </ul>
+        </div>
+
+        <div class="col-6">
+            <h3 class="text-center">Your Tracked Produce</h3>
+            <ul id="tracked-produce-list" class="list-group">
+                {{#each produce}}
+                <li class="list-group-item d-flex justify-content-between list-group-item-info">
+                    <h4>{{name}}</h4>
+                    <button class="btn bg-danger">Delete</button>
+                </li>
+                {{/each}}
+            </ul>
+
+            <div class="text-center mt-3">
+                <button id="add-produce" class="btn btn-info" href="/add-produce">Click to track more produce!</button>
+            </div>
+        </div>
+        {{/if}}
     </div>
 </section>
-{{/if}}
 
 <script src="javascript/add-produce.js"></script>
+<script src="javascript/delete-tracked-produce.js"></script>
