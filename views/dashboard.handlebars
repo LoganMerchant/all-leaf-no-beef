@@ -1,89 +1,122 @@
 <section class="container">
     <div class="row">
-        <div class="col-12 text-center">
-            <p class="h3">Week of <span class="lead">{{week.[0].month}} / {{week.[0].date}} / {{week.[0].year}} – {{week.[6].month}} / {{week.[6].date}} / {{week.[6].year}}</span></p>
-        </div>
-        {{#each week}}
-        {{#if @first}}
-        <div class="col-12 border border-secondary d-flex align-items-center flex-column py-2">
-            <h3 class="text-center">{{dayOfWeek}} List of To-Dos</h3>
-            <ul class="list-group w-50 pb-2">
-                {{#each ../produce}}
+        {{!-- Displays the calendar and tracked produce list if there are any already being tracked --}}
+        {{#if produce}}
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-12">
+                        <h3>Weekly Calendar
+                            <h4 class="lead">
+                                {{week.[0].month}} / {{week.[0].date}} / {{week.[0].year}} – {{week.[6].month}} / {{week.[6].date}} / {{week.[6].year}}
+                            </h4>
+                        </h3>
+                    </div>
+                </div>
 
-                {{#if (isDaily water_frequency)}}
-                <li class="list-group-item list-group-item-info mb-3">
-                    <h6>{{name}}</h4>
-                    <p>Require {{water_amount}} of water.</p>
-                    <p>Require {{amount_of_light}} hours of sunlight.</p>
-                </li>
-                {{/if}}
+                <div class="row">
+                {{#each week}}
+                    {{#if @first}}
+                        <div class="col-12 border border-secondary d-flex align-items-center flex-column py-2">
+                            <h4 class="text-center">Today</h4>
+                            <ul class="list-group w-50 pb-2">
+                                {{#each ../produce}}
 
-                {{#if (isBiWeekly water_frequency ../dayOfWeek ../date)}}
-                <li class="list-group-item list-group-item-info mb-3">
-                    <h4>{{name}}</h4>
-                    <p>Require {{water_amount}} of water.</p>
-                    <p>Require {{amount_of_light}} hours of sunlight.</p>
-                </li>
-                {{/if}}
+                                    {{#if (isDaily water_frequency)}}
+                                    <li class="list-group-item list-group-item-info mb-3">
+                                        <h6>{{name}}</h6>
+                                        <p>Require {{water_amount}} of water.</p>
+                                        <p>Require {{amount_of_light}} hours of sunlight.</p>
+                                    </li>
+                                    {{/if}}
 
+                                    {{#if (isBiWeekly water_frequency ../dayOfWeek ../date)}}
+                                    <li class="list-group-item list-group-item-info mb-3">
+                                        <h6>{{name}}</h6>
+                                        <p>Require {{water_amount}} of water.</p>
+                                        <p>Require {{amount_of_light}} hours of sunlight.</p>
+                                    </li>
+                                    {{/if}}
+
+                                {{/each}}
+                            </ul>
+                        </div>
+                    {{else}}
+                        <div class="col-4 border border-secondary d-flex align-items-center flex-column py-2">
+                            <h5>{{dayOfWeek}}</h5>
+                            <ul class="list-group">
+                                {{#each ../produce}}
+                                    {{#if (isDaily water_frequency)}}
+                                    <li class="list-group-item list-group-item-info mb-2">
+                                        <h6>{{name}}</h6>
+                                    </li>
+                                    {{/if}}
+
+                                    {{#if (isBiWeekly water_frequency ../dayOfWeek ../date)}}
+                                    <li class="list-group-item list-group-item-info mb-3">
+                                        <h6>{{name}}</h6>
+                                    </li>
+                                    {{/if}}
+                                {{/each}}
+                            </ul>
+                        </div>
+                    {{/if}}
                 {{/each}}
-            </ul>
-        </div>
-        {{else}}
-        <div class="col-2 border border-secondary d-flex align-items-center flex-column">
-            <h4>{{dayOfWeek}}</h4>
-            {{#each ../produce}}
-
-            {{#if (isDaily water_frequency)}}
-            <li class="list-group-item list-group-item-info mb-2">
-                <h6>{{name}}</h6>
-            </li>
-            {{/if}}
-
-            {{#if (isBiWeekly water_frequency ../dayOfWeek ../date)}}
-            <li class="list-group-item list-group-item-info mb-3">
-                <h6>{{name}}</h6>
-            </li>
-            {{/if}}
-
-            {{/each}}
-        </div>
-        {{/if}}
-        {{/each}}
-    </div>
-
-    <div class="row">
-        {{#if posts}}
-        <div class="col-6">
-        <h3 class="text-center">Your Posts</h3>
-        <ul id="post-list" class="list-group">
-            {{#each posts}}
-            <li class="list-group-item list-group-item-info mb-2">
-                    <a class="text-success display-4" href="/post/{{id}}">{{title}}</a> <br/>
-                    <p class="lead text-dark">{{ content }}</p>
-                    <p class="text-muted lead">{{vote_count}} upvote(s), created on {{format_date created_at}}</p>
-                    <a class="text-muted lead" href="/post/{{id}}">{{comments.length}} comment(s)</a>
-                <a role="button" class="my-2 btn btn-warning" href="/dashboard/edit-post/{{id}}">Edit this post!</a>
-            </li>
-            {{/each}}
-        </ul>
-        </div>
-
-        <div class="col-6">
-            <h3 class="text-center">Your Tracked Produce</h3>
-            <ul id="tracked-produce-list" class="list-group">
-                {{#each produce}}
-                <li class="list-group-item d-flex justify-content-between list-group-item-info">
-                    <h4>{{name}}</h4>
-                    <button class="btn bg-danger" id={{tracked_produce.id}}>Stop Tracking</button>
-                </li>
-                {{/each}}
-            </ul>
-
-            <div class="text-center mt-3">
-                <button id="add-produce" class="btn btn-info" href="/add-produce">Click to track more produce!</button>
+                </div>
             </div>
-        </div>
+            
+            <div class="col-4">
+                <h3>Currently Tracked Produce</h3>
+                <ul id="tracked-produce-list" class="list-group">
+                    {{#each produce}}
+                        <li class="list-group-item d-flex justify-content-between list-group-item-info">
+                            <p>{{name}}</p>
+                            <button class="btn bg-danger" id={{tracked_produce.id}}>Stop Tracking</button>
+                        </li>
+                    {{/each}}
+                </ul>
+
+                <div class="text-center mt-3">
+                    <button id="add-produce" class="btn btn-info" href="/add-produce">Track more produce!</button>
+                </div>
+
+                {{#if posts}}
+                    <div class="col-12">
+                    <h3>Your Posts</h3>
+                    <ul id="post-list" class="list-group">
+                        {{#each posts}}
+                        <li class="list-group-item list-group-item-info mb-2">
+                                <a class="text-success display-4" href="/post/{{id}}">{{title}}</a> <br/>
+                                <p class="lead text-dark">{{ content }}</p>
+                                <p class="text-muted lead">{{vote_count}} upvote(s), created on {{format_date created_at}}</p>
+                                <a class="text-muted lead" href="/post/{{id}}">{{comments.length}} comment(s)</a>
+                            <a role="button" class="my-2 btn btn-warning" href="/dashboard/edit-post/{{id}}">Edit this post!</a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                    </div>
+                {{/if}}
+            </div>
+        {{else}}
+            <div class="col-12">
+                {{#if posts}}
+                    <h3>Your Posts</h3>
+                    <ul id="post-list" class="list-group">
+                        {{#each posts}}
+                        <li class="list-group-item list-group-item-info mb-2">
+                                <a class="text-success display-4" href="/post/{{id}}">{{title}}</a> <br/>
+                                <p class="lead text-dark">{{ content }}</p>
+                                <p class="text-muted lead">{{vote_count}} upvote(s), created on {{format_date created_at}}</p>
+                                <a class="text-muted lead" href="/post/{{id}}">{{comments.length}} comment(s)</a>
+                            <a role="button" class="my-2 btn btn-warning" href="/dashboard/edit-post/{{id}}">Edit this post!</a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                {{/if}}
+
+                <button id="add-produce" class="btn btn-info d-flex flex-fill" href="/add-produce">
+                    Track more produce!
+                </button>
+            </div>
         {{/if}}
     </div>
 </section>
